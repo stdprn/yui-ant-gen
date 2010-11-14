@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="yui-gen" default="generate" basedir=".">
+	
+	<property file="project.properties" />
+	
+	<property name="classpath" location="target/classes"/>
+	<!--
+	<property name="classes.dir" value="target/classes" />
+	<property name="lib.dir" value="lib" />
+	-->
+	
+	<path id="jarpath">
+		<pathelement location="lib/freemarker-2.3.13.jar"/>
+		<!--
+		<fileset dir="target/classes">
+			<include name="**/*.class" />
+		</fileset>
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		-->
+	</path>
+		
+    <taskdef name="gen-action" classname="org.seasar.akabana.yui.framework.gen.task.GenActionTask" classpath="${classpath}" classpathref="jarpath"/>    	
+	<!--
+	<taskdef name="gen-view" classname="org.seasar.akabana.yui.framework.gen.task.GenViewTask" classpath="${classpath}" /> 
+	<taskdef name="gen-helper" classname="org.seasar.akabana.yui.framework.gen.task.GenHelperTask" classpath="${classpath}" /> 
+	<taskdef name="gen-behavior" classname="org.seasar.akabana.yui.framework.gen.task.GenBehaviorTask" classpath="${classpath}" /> 
+	-->
+    <target name="generate">
+        <input message="Input a *Package* name." addproperty="packageName" defaultvalue="${defaultPackageName}"/>
+        <input message="Input a *BASE* name." addproperty="baseName" defaultvalue="${defaultBaseName}"/>
+        <gen-action sourceDir="${srcDir}" packageName="${packageName}" baseName="${baseName}" />
+    	<!--
+        <gen-view packageName="${packageName}" baseName="${baseName}" />
+        <gen-helper packageName="${packageName}" baseName="${baseName}" />
+        <gen-behavior packageName="${packageName}" baseName="${baseName}" />
+        -->
+    </target>
+
+</project>
